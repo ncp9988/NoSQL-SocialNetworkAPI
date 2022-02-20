@@ -1,7 +1,8 @@
 const { Schema, model } = require('mongoose');
 const timestamp = require('../utils/index');
+const reactionSchema = require('./Reaction');
 
-const ThoughtSchema = new Schema({
+const thoughtSchema = new Schema({
     thoughtText: {
         type: String,
         require: "This is required",
@@ -18,12 +19,23 @@ const ThoughtSchema = new Schema({
         type: String,
         require: 'Username is required',
     },
-    reactions: {
+    reactions: [reactionSchema]
         //Array of nested documents created with the reactionSchema
 
-    }
-});
+    
+},
+{
+    toJSON:{
+        getters:true
+    },
+    id:false
+}
+);
+thoughtSchema.virtual('reactionCount').get(function(){
+    return this.reactions.length;
+})
 
-const Thought = model('Thought', ThoughtSchema);
+
+const Thought = model('Thought', thoughtSchema);
 
 module.exports = Thought;
