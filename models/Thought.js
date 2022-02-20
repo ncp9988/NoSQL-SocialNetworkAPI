@@ -20,8 +20,6 @@ const thoughtSchema = new Schema({
         require: 'Username is required',
     },
     reactions: [reactionSchema]
-        //Array of nested documents created with the reactionSchema
-
     
 },
 {
