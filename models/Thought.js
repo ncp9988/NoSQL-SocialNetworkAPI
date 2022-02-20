@@ -1,16 +1,17 @@
 const { Schema, model } = require('mongoose');
+const timestamp = require('../utils/index');
 
 const ThoughtSchema = new Schema({
     thoughtText: {
         type: String,
         require: "This is required",
-        length: [1,280],
-        // Must be between 1 and 280 characters
-
+        minlength: 1,
+        maxlength: 280,
     },
     createAt: {
         type: Date,
         default: Date.now,
+        get: datetime => timestamp(datetime)
         //Use a getter method to format the timestamp on query
     },
     username: {

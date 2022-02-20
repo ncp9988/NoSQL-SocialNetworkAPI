@@ -18,6 +18,18 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/populatedb', {
 mongoose.set('useCreateIndex', true);
 mongoose.set('debug', true);
 
+// Get all users
+app.get('/user', (req, res) => {
+  db.User.find({})
+    .then(dbUser => {
+      res.json(dbUser);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
+
 
 
 
@@ -26,3 +38,4 @@ mongoose.set('debug', true);
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);
 });
+
