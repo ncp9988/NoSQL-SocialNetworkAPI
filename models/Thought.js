@@ -12,7 +12,7 @@ const thoughtSchema = new Schema({
     createAt: {
         type: Date,
         default: Date.now,
-        get: datetime => timestamp(datetime)
+        get: datetime => timestamp(datetime),
         //Use a getter method to format the timestamp on query
     },
     username: {
