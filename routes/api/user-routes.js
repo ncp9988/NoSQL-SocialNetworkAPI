@@ -16,6 +16,7 @@ routes.get("/:userId", (req, res) => {
    });
 
 routes.post("/", (req, res) => {
+    console.log(req.body)
     User.create(req.body)
     .then(allusers =>  res.json(allusers))
     .catch(error => res.status(500).json(error));

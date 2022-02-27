@@ -9,15 +9,14 @@ const db = require('./models');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/populatedb', {
-  useFindAndModify: false,
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/userapi', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
 mongoose.set('debug', true);
 
-app.use(require('./routes/'));
+app.use(require('./routes/api'));
 
 
 
