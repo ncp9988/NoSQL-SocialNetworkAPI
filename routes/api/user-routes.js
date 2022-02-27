@@ -46,8 +46,9 @@ routes.post("/:userId/friends/:friendId", (req, res) => {
    
 });
 
-routes.delete("/:userId/friends/:friendId", (req,res) => {
-    User.findOneAndDelete({ _id:req.params.friendId })
+routes.put("/:userId/friends/:friendId", (req,res) => {
+    User.findOneAndUpdate({ _id:req.params.userId }, 
+        {$pull:{friends:{friendId:req.params.friendId}}},{new: true})
     .then(allusers =>  res.json(allusers))
     .catch(error => res.status(500).json(error));
    
