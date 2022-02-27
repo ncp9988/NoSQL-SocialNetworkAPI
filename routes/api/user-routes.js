@@ -2,6 +2,7 @@ const routes = require('express').Router();
 const { User } = require('../../models/');
 
 routes.get("/", (req, res) => {
+    console.log('get route')
  User.find().select('-__v')
  .then(allusers =>  res.json(allusers))
  .catch(error => res.status(500).json(error));
@@ -16,7 +17,7 @@ routes.get("/:userId", (req, res) => {
    });
 
 routes.post("/", (req, res) => {
-    console.log(req.body)
+    console.log("post",req.body)
     User.create(req.body)
     .then(allusers =>  res.json(allusers))
     .catch(error => res.status(500).json(error));
@@ -37,6 +38,13 @@ routes.delete("/:userId", (req, res) => {
     .catch(error => res.status(500).json(error));
    
    });
+
+routes.post("/:userId/friends/:friendId", (req, res) => {
+    User.findOneAndUpdate({ _id:req.params.userId }, {$addToSet:{friends:req.params.friendId}},{new:true})
+    .then(allusers =>  res.json(allusers))
+    .catch(error => res.status(500).json(error));
+   
+})
 
 
 module.exports = routes;

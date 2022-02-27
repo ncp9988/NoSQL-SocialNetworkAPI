@@ -1,9 +1,9 @@
 const routes = require('express').Router();
-const { Router } = require('express');
+// const { Router } = require('express');
 const { Thought } = require('../../models');
 
 routes.get("/", (req, res) => {
-    thought.find().select('-__v')
+    Thought.find().select('-__v')
         .then(allthoughts => res.json(allthoughts))
         .catch(error => res.status(500).json(error));
 
@@ -16,9 +16,12 @@ routes.get("/:thoughtId", (req, res) => {
 });
 
 routes.post("/", (req, res) => {
-    Thought.create(req.body)
+    console.log("post",req.body)
+    Thought.create({thoughtText:req.body.thoughText, username: req.body.username})
         .then(allthoughts => res.json(allthoughts))
-        .catch(error => res.status(500).json(error));
+        .catch(error => {
+            console.log(error)
+            res.status(500).json(error)});
 
 });
 

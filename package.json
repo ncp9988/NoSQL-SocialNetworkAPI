@@ -1,7 +1,32 @@
 {
-  "dependencies": {
+  "scripts": {
+    "start": "node server.js",
+    "watch": "nodemon server.js"
+  },
+  "name": "nosql-socialnetworkapi",
+  "description": "Backendapp",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {
     "express": "^4.17.3",
-    "momment": "^0.0.1",
-    "mongoose": "^6.2.2"
+    "moment": "^0.0.1",
+    "mongoose": "^6.2.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ncp9988/NoSQL-SocialNetworkAPI.git"
+  },
+  "keywords": [
+    "Ndejs"
+  ],
+  "author": "Shelby",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ncp9988/NoSQL-SocialNetworkAPI/issues"
+  },
+  "homepage": "https://github.com/ncp9988/NoSQL-SocialNetworkAPI#readme",
+  "dependencies": {
+    "moment": "^2.29.1",
+    "nodemon": "^2.0.15"
   }
 }
