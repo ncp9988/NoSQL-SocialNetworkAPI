@@ -51,7 +51,15 @@ routes.delete("/:userId/friends/:friendId", (req,res) => {
     .then(allusers =>  res.json(allusers))
     .catch(error => res.status(500).json(error));
    
-})
+});
+
+// bonus
+routes.delete("/:userId/thought/:thoughtId", (req,res) => {
+    User.findOneAndDelete({ _id:req.params.thoughtId })
+    .then(allusers =>  res.json(allusers))
+    .catch(error => res.status(500).json(error));
+   
+});
 
 
 module.exports = routes;

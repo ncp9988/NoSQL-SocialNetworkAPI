@@ -18,11 +18,9 @@ routes.get("/:thoughtId", (req, res) => {
 
 routes.post("/", (req, res) => {
     console.log("post",req.body)
-    Thought.create({thoughtText:req.body.thoughText, username: req.body.username})
+    Thought.create(req.body)
         .then(allthoughts => res.json(allthoughts))
-        .catch(error => {
-            console.log(error)
-            res.status(500).json(error)});
+        .catch(error => res.status(500).json(error));
 
 });
 
