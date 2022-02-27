@@ -44,6 +44,13 @@ routes.post("/:userId/friends/:friendId", (req, res) => {
     .then(allusers =>  res.json(allusers))
     .catch(error => res.status(500).json(error));
    
+});
+
+routes.delete("/:userId/friends/:friendId", (req,res) => {
+    User.findOneAndDelete({ _id:req.params.friendId })
+    .then(allusers =>  res.json(allusers))
+    .catch(error => res.status(500).json(error));
+   
 })
 
 
