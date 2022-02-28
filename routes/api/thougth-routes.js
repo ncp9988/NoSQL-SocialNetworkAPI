@@ -54,4 +54,3 @@ routes.delete("/:thoughtId/reactions/:reactionId", (req,res) => {
 })
 
 module.exports = routes;
-
