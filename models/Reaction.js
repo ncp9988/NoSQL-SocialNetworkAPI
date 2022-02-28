@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose');
+const { Schema } = require('mongoose');
+const timestamp = require('../utils/index');
 
 const reactionSchema = new Schema({
     reactionId: {
@@ -7,12 +8,12 @@ const reactionSchema = new Schema({
     },
     reactionBody: {
         type: String,
-        require: 'This is required',
+        require: true,
         maxLength: 280
     },
     username: {
         type: String,
-        require: 'Username is require'
+        require: true
     },
     createAt: {
         type: Date,
@@ -29,6 +30,6 @@ const reactionSchema = new Schema({
 }
 );
 
-const Reaction = model('Reaction', reactionSchema);
+// const Reaction = model('Reaction', reactionSchema);
 
 module.exports = reactionSchema;
