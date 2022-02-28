@@ -1,5 +1,4 @@
 const routes = require('express').Router();
-const { route } = require('.');
 // const { Router } = require('express');
 const { Thought } = require('../../models');
 
@@ -47,7 +46,8 @@ routes.post("/:thoughtId/reactions", (req, res) => {
 });
 
 routes.delete("/:thoughtId/reactions", (req,res) => {
-    Thought.findOneAndDelete({ _id:req.params.reactionId })
+    Thought.findOneAndUpdate({ _id:req.params.thoughId },
+    { $pull: { reactions: req.params.reactionId } }, { new: true })
     .then(allthoughts =>  res.json(allthoughts))
     .catch(error => res.status(500).json(error));
    
