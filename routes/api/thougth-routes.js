@@ -39,13 +39,13 @@ routes.delete("/:thoughtId", (req, res) => {
    });
 
 routes.post("/:thoughtId/reactions", (req, res) => {
-    Thought.findOneAndUpdate({ _id:req.params.thoughtId }, {$addToSet:{reactions:req.params.reactionId}},{new:true})
+    Thought.findOneAndUpdate({ _id:req.params.thoughtId }, {$addToSet:{reactions:req.body}},{new:true})
     .then(allthoughts =>  res.json(allthoughts))
     .catch(error => res.status(500).json(error));
    
 });
 
-routes.delete("/:thoughtId/reactions", (req,res) => {
+routes.delete("/:thoughtId/reactions/:reactionId", (req,res) => {
     Thought.findOneAndUpdate({ _id:req.params.thoughId },
     { $pull: { reactions: req.params.reactionId } }, { new: true })
     .then(allthoughts =>  res.json(allthoughts))
